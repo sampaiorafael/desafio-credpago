@@ -1,26 +1,69 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class CreditAnalysisDTO {
-  @ApiProperty()
+  @ApiProperty({
+    description: 'User name',
+    default: 'Rafael',
+  })
   name: string
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'User CPF',
+    default: '60775263710',
+  })
   cpf: string
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'User credit reputation',
+    default: false,
+  })
   badCreditReputation: boolean 
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'User wage/income/salary/payment',
+    default: 10000
+  })
   income: number
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'User credit card limit',
+    default: 15000
+  })
   creditCardLimit: number
-  @ApiProperty()
+  
+  @ApiProperty({
+    description: 'User chosen place rent value',
+    default: 15000
+  })
   rentValue: number
-  @ApiProperty()
+  
+  @ApiProperty({
+    description: 'User street address',
+    default: 'Rua Visconde do Rio Branco'
+  })
   streetAddress: string
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'User number address',
+    default: 1488
+  })
   numberAddress: number
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'User city/town/district address',
+    default: 'Curitiba'
+  })
   cityAddress: string
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'User state address',
+    default: 'PR'
+  })
   stateAddress: string
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'User CEP code address',
+    default: '80420210'
+  })
   cepCodeAddress: string
 }
