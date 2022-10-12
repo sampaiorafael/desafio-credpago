@@ -26,7 +26,6 @@ export class CreditAnalysisService {
 
     const rentValueIsHigher = this.rentValueVerification(data.rentValue, data.income)
     const previousDayRangeToAnalyse = new Date(new Date().setDate(new Date().getDate() - 90))
-    console.log(previousDayRangeToAnalyse)
     const lastCreditAnalysisIn90Days = await this.creditAnalysisRepository.findLastCreditAnalysisByCpfFromDate(data.cpf, previousDayRangeToAnalyse)
     const deniedOnTwoFirstRules = rentValueIsHigher && data.badCreditReputation
     
@@ -38,8 +37,6 @@ export class CreditAnalysisService {
         if(lastCreditAnalysisIn90Days.result === CreditAnalysisResult.DENIED) creditScore = this.removePercentageFromScore(creditScore, 10)
       }
     } 
-
-    console.log(creditScore)
 
     const roundedScore = Math.ceil(creditScore)
     const result = deniedOnTwoFirstRules ? CreditAnalysisResult.DENIED : this.defineCreditAnalysisScoreResult(roundedScore)
