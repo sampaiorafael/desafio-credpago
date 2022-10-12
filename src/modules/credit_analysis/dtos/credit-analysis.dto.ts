@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class CreditAnalysisDTO {
+export class CreditAnalysisRequestDTO {
   @ApiProperty({
     description: 'User name',
     default: 'Rafael',
