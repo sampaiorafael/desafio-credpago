@@ -19,7 +19,7 @@ export class CreditAnalysisController {
   public async creditAnalysis(
     @Body() payload: CreditAnalysisRequestDTO
   ): Promise<CreditAnalysisResponseDTO> {
-    const userCreditAnalysis = await this.creditAnalysisService.creditAnalysis(payload)
+    const userCreditAnalysis = await this.creditAnalysisService.execute(payload)
     return userCreditAnalysis
   }
 

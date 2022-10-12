@@ -13,7 +13,7 @@ export class CreditAnalysisService {
     private readonly cepService: CepService
   ) {}
 
-  public async creditAnalysis(data: CreditAnalysisRequestDTO): Promise<CreditAnalysisResponseDTO> {
+  public async execute(data: CreditAnalysisRequestDTO): Promise<CreditAnalysisResponseDTO> {
     const cepVerification = await this.cepService.verifyCep(data.cepCodeAddress)
 
     if(

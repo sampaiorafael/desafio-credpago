@@ -148,41 +148,41 @@ describe('Credit Analysis Service', () => {
 
   it('First readme challenge usecase test', async () => {
     const requestPayload = mockedCreditAnalysisRequest.find(mock => mock.name = 'Firsttest')
-    const result = await creditAnalysisService.creditAnalysis(requestPayload)
+    const result = await creditAnalysisService.execute(requestPayload)
     expect(result.result).toBe(CreditAnalysisResult.APPROVED)
     expect(result.score).toBe(100)
   })
 
   it('Second readme challenge usecase test', async () => {
     const requestPayload = mockedCreditAnalysisRequest.find(mock => mock.name === 'Secondtest')
-    const result = await creditAnalysisService.creditAnalysis(requestPayload)
+    const result = await creditAnalysisService.execute(requestPayload)
     expect(result.result).toBe(CreditAnalysisResult.APPROVED)
     expect(result.score).toBe(77)
   })
 
   it('Third readme challenge usecase test', async () => {
     const requestPayload = mockedCreditAnalysisRequest.find(mock => mock.name === 'Thirdtest')
-    const result = await creditAnalysisService.creditAnalysis(requestPayload)
+    const result = await creditAnalysisService.execute(requestPayload)
     expect(result.result).toBe(CreditAnalysisResult.TOMANUAL)
     expect(result.score).toBe(53)
   })
 
   it('Fourth readme challenge usecase test', async () => {
     const requestPayload = mockedCreditAnalysisRequest.find(mock => mock.name === 'Fourthtest')
-    const result = await creditAnalysisService.creditAnalysis(requestPayload)
+    const result = await creditAnalysisService.execute(requestPayload)
     expect(result.result).toBe(CreditAnalysisResult.DENIED)
     expect(result.score).toBe(57)
   })
 
   it('Should return bad request because of null cep code', async () => {
     const requestPayload = mockedCreditAnalysisRequest.find(mock => mock.name === 'FailCepCode')
-    const result = creditAnalysisService.creditAnalysis(requestPayload)
+    const result = creditAnalysisService.execute(requestPayload)
     expect(result).rejects.toThrow(BadRequestException);
   })
 
   it('Should return bad request because of invalid cep code', async () => {
     const requestPayload = mockedCreditAnalysisRequest.find(mock => mock.name === 'FailCepCode2')
-    const result = creditAnalysisService.creditAnalysis(requestPayload)
+    const result = creditAnalysisService.execute(requestPayload)
     expect(result).rejects.toThrow(BadRequestException);
   }) 
  
