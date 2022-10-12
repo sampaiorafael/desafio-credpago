@@ -15,9 +15,9 @@ export class UsersEntity {
 	@Column({ type: 'enum', enum: CreditAnalysisResult, nullable: false })
 	public result: string
 
-	@CreateDateColumn({ name: 'created_at', type: 'datetime', nullable: false })
+	@CreateDateColumn({ name: 'created_at', type: 'timestamptz', nullable: false })
 	public createdAt: Date
 
-	@UpdateDateColumn({ name: 'updated_at', type: 'datetime', nullable: false })
+	@UpdateDateColumn({ name: 'updated_at', type: 'timestamptz', nullable: false })
 	public updatedAt: Date
 }
