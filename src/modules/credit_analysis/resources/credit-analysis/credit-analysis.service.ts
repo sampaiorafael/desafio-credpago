@@ -16,10 +16,7 @@ export class CreditAnalysisService {
   public async execute(data: CreditAnalysisRequestDTO): Promise<CreditAnalysisResponseDTO> {
     const cepVerification = await this.cepService.verifyCep(data.cepCodeAddress)
 
-    if(
-      !cepVerification || 
-      cepVerification.uf != data.stateAddress || 
-      cepVerification.localidade != data.cityAddress
+    if(!cepVerification ||  cepVerification.uf != data.stateAddress || cepVerification.localidade != data.cityAddress
     ) throw new BadRequestException('Was not possible to validate this CEP code')
 
     let creditScore = 100

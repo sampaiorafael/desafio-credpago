@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CreditAnalysisEntity } from './credit-analysis.entity';
 import { CreditAnalysisRequestDTO, CreditAnalysisResponseDTO } from './dtos/credit-analysis.dto';
 import { CreditAnalysisService } from './resources/credit-analysis/credit-analysis.service';
 import { LastCreditAnalysisService } from './resources/last-credit-analysis/last-credit-analysis.service';
@@ -24,6 +25,7 @@ export class CreditAnalysisController {
   }
 
   @Get('/last/:cpf')
+  @ApiResponse({ type: CreditAnalysisEntity })
   public async lastCreditAnalysis(
     @Param('cpf') cpf: string
   ): Promise<any> {
