@@ -101,6 +101,7 @@ describe('Credit Analysis Service', () => {
   const mockedCreditAnalysis: CreditAnalysisEntity[] = [
     {
       id: '8c923be5-c2f3-4f15-908d-3611a8e6446f',
+      score: 100,
       cpf: '45561195026',
       result: CreditAnalysisResult.APPROVED,
       createdAt: new Date(),
@@ -110,6 +111,7 @@ describe('Credit Analysis Service', () => {
       id: '2a7e1d55-6b7f-4cf8-b9bd-861cf4d3fd17',
       cpf: '24661074068',
       result: CreditAnalysisResult.DENIED,
+      score: 10,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -117,6 +119,7 @@ describe('Credit Analysis Service', () => {
       id: '39eefb55-6d0a-49b1-add2-58ba5103ba79',
       cpf: '61004855087',
       result: CreditAnalysisResult.DENIED,
+      score: 20,
       createdAt: new Date(),
       updatedAt: new Date()
     },
@@ -124,6 +127,7 @@ describe('Credit Analysis Service', () => {
       id: '9185cc38-2c5c-44a0-aa30-519296f3f2f2',
       cpf: '05933260088',
       result: CreditAnalysisResult.APPROVED,
+      score: 90,
       createdAt: new Date(),
       updatedAt: new Date()
     }
