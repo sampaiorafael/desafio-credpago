@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
-import { CreditAnalysisRequestDTO } from './dtos/credit-analysis.dto';
+import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CreditAnalysisRequestDTO, CreditAnalysisResponseDTO } from './dtos/credit-analysis.dto';
 import { CreditAnalysisService } from './resources/credit-analysis/credit-analysis.service';
 
 @Controller()
@@ -13,6 +13,7 @@ export class CreditAnalysisController {
 
   @Post()
   @ApiBody({ type: CreditAnalysisRequestDTO })
+  @ApiResponse({ type: CreditAnalysisResponseDTO })
   public async creditAnalysis(
     @Body() payload: CreditAnalysisRequestDTO
   ): Promise<any> {
