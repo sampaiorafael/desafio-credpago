@@ -11,13 +11,13 @@ export class CreditAnalysisRepository {
     private readonly creditAnalysisRepository: Repository<CreditAnalysisEntity>
   ) {}
 
-  public async findLastCreditAnalysis(): Promise<CreditAnalysisEntity> {
+  public async findLastCreditAnalysisByCpf(cpf: string): Promise<CreditAnalysisEntity> {
     const lastCreditAnalysis = await this.creditAnalysisRepository.findOne({
-      order: {
-        createdAt: 'DESC'
-      }
+      where: { cpf },
+      order: { createdAt: 'DESC' }
     })
     return lastCreditAnalysis
   }
+
 
 }
