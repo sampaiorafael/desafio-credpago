@@ -2,6 +2,7 @@ import { Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm'
 import { CreditAnalysisEntity } from './credit-analysis.entity';
+import { CreditAnalysisResult } from './credit-analysis-result.enum';
 
 @Injectable()
 export class CreditAnalysisRepository {
@@ -17,6 +18,14 @@ export class CreditAnalysisRepository {
       order: { createdAt: 'DESC' }
     })
     return lastCreditAnalysis
+  }
+
+  public async createCreditAnalysis(cpf: string, result: CreditAnalysisResult): Promise<CreditAnalysisEntity> {
+    const newCreditAnalysis = await this.creditAnalysisRepository.save({
+      cpf, 
+      result
+    })
+    return newCreditAnalysis
   }
 
 
