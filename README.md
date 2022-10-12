@@ -8,6 +8,7 @@ $ npm install
 ```
 
 ## Variaveis de desenvolvimento necessárias
+.env
 ```bash
 PORT=8080
 DATABASE_HOST = localhost
