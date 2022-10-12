@@ -5,6 +5,7 @@ import { CreditAnalysisEntity } from './credit-analysis.entity';
 import { CreditAnalysisRepository } from './credit-analysis.repository';
 import { CreditAnalysisService } from './resources/credit-analysis/credit-analysis.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { LastCreditAnalysisService } from './resources/last-credit-analysis/last-credit-analysis.service';
 
 
 @Module({
@@ -16,6 +17,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   providers: [
     CreditAnalysisRepository,
     CreditAnalysisService,
+    LastCreditAnalysisService
   ],
 })
 export class CreditAnalysisModule {}
