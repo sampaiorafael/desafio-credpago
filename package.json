@@ -18,7 +18,14 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "cross-env NODE_ENV=development typeorm-ts-node-esm -d ./src/configs/typeorm.config.ts",
+    "typeorm:m:generate": "cross-env NODE_ENV=development npm run typeorm migration:generate src/database/migrations/$npm_config_name",
+    "typeorm:m:create": "cross-env NODE_ENV=development npm run typeorm migration:create src/database/migrations/$npm_config_name",
+    "typeorm:m:revert": "cross-env NODE_ENV=development npm run typeorm migration:revert",
+    "typeorm:m:run": "cross-env NODE_ENV=development npm run typeorm migration:run",
+    "typeorm:drop": "cross-env NODE_ENV=development npm run typeorm schema:drop",
+    "setup:dev": "cross-env NODE_ENV=development npm run typeorm:drop && npm run typeorm:m:run"
   },
   "dependencies": {
     "@nestjs/axios": "^0.1.0",
