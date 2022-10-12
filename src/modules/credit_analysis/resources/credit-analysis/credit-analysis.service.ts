@@ -40,7 +40,7 @@ export class CreditAnalysisService {
 
     const roundedScore = Math.ceil(creditScore)
     const result = deniedOnTwoFirstRules ? CreditAnalysisResult.DENIED : this.defineCreditAnalysisScoreResult(roundedScore)
-    const completeResult = await this.creditAnalysisRepository.createCreditAnalysis(data.cpf, result)
+    const completeResult = await this.creditAnalysisRepository.createCreditAnalysis(data.cpf, result, roundedScore)
 
     return {
       id: completeResult.id,

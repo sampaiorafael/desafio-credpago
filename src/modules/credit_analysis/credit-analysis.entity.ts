@@ -15,6 +15,9 @@ export class CreditAnalysisEntity {
 	@Column({ type: 'char', length: '11', nullable: false })
 	public cpf: string
 
+	@Column({ nullable: false })
+	public score: number
+
 	@Column({ type: 'enum', enum: CreditAnalysisResult, nullable: false })
 	public result: string
 

@@ -23,10 +23,11 @@ export class CreditAnalysisRepository {
     return lastCreditAnalysis
   }
 
-  public async createCreditAnalysis(cpf: string, result: CreditAnalysisResult): Promise<CreditAnalysisEntity> {
+  public async createCreditAnalysis(cpf: string, result: CreditAnalysisResult, score: number): Promise<CreditAnalysisEntity> {
     const newCreditAnalysis = await this.creditAnalysisRepository.save({
       cpf, 
-      result
+      result,
+      score
     })
     return newCreditAnalysis
   }
