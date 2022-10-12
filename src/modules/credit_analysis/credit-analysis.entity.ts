@@ -12,6 +12,9 @@ export class CreditAnalysisEntity {
 	@PrimaryGeneratedColumn('uuid')
 	public id: string
 
+	@Column({ type: 'char', length: '11', nullable: false })
+	public cpf: string
+
 	@Column({ type: 'enum', enum: CreditAnalysisResult, nullable: false })
 	public result: string
 
