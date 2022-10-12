@@ -10,12 +10,16 @@ export class CepService {
   ) {}
 
   public async verifyCep(cep: string): Promise<CepVerifyResponseDTO> {
-    const cepVerification = await this.httpService.axiosRef.get(`https://viacep.com.br/ws/${cep}/json/`)
-    const cepResponse: CepVerifyResponseDTO = Object.assign(cepVerification.data)
-    if(!cepResponse.cep) {
+    try {
+      const cepVerification = await this.httpService.axiosRef.get(`https://viacep.com.br/ws/${cep}/json/`)
+      const cepResponse: CepVerifyResponseDTO = Object.assign(cepVerification.data)
+      if(!cepResponse.cep) {
+        return null
+      }
+      return cepResponse
+    } catch (error) {
       return null
     }
-    return cepResponse
   }
 
 }
