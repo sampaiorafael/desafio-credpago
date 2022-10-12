@@ -8,7 +8,7 @@ import {
 import { CreditAnalysisResult } from "./credit-analysis-result.enum"
 
 @Entity('credit_analysis')
-export class UsersEntity {
+export class CreditAnalysisEntity {
 	@PrimaryGeneratedColumn('uuid')
 	public id: string
 
