@@ -1,6 +1,5 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
-import { CepService } from 'src/modules/cep/cep.service';
-import { inflateRaw } from 'zlib';
+import { CepService } from '../../../cep/cep.service';
 import { CreditAnalysisResult } from '../../credit-analysis-result.enum';
 import { CreditAnalysisRepository } from '../../credit-analysis.repository';
 import { CreditAnalysisRequestDTO, CreditAnalysisResponseDTO } from '../../dtos/credit-analysis.dto';
@@ -27,20 +26,19 @@ export class CreditAnalysisService {
 
     const rentValueIsHigher = this.rentValueVerification(data.rentValue, data.income)
     const lastCreditAnalysisIn90Days = await this.creditAnalysisRepository.findLastCreditAnalysisByCpfFromDate(data.cpf)
-
+    const deniedOnTwoFirstRules = rentValueIsHigher && data.badCreditReputation
+    
     if(rentValueIsHigher) creditScore = this.removePercentageFromScore(creditScore, 18)
     if(data.badCreditReputation) creditScore = this.removePercentageFromScore(creditScore, 31)
-    if(data.creditCardLimit <= data.rentValue) creditScore = this.removePercentageFromScore(creditScore, 15)
-    if(lastCreditAnalysisIn90Days) {
-      if(lastCreditAnalysisIn90Days.result === CreditAnalysisResult.DENIED) creditScore = this.removePercentageFromScore(creditScore, 10)
-    }
-    
+    if(!deniedOnTwoFirstRules) {
+      if(data.creditCardLimit <= data.rentValue) creditScore = this.removePercentageFromScore(creditScore, 15)
+      if(lastCreditAnalysisIn90Days) {
+        if(lastCreditAnalysisIn90Days.result === CreditAnalysisResult.DENIED) creditScore = this.removePercentageFromScore(creditScore, 10)
+      }
+    } 
+
     const roundedScore = Math.ceil(creditScore)
-
-    const result = (rentValueIsHigher && data.badCreditReputation) ? 
-      CreditAnalysisResult.DENIED : 
-      this.defineCreditAnalysisScoreResult(roundedScore)
-
+    const result = deniedOnTwoFirstRules ? CreditAnalysisResult.DENIED : this.defineCreditAnalysisScoreResult(roundedScore)
     const completeResult = await this.creditAnalysisRepository.createCreditAnalysis(data.cpf, result)
 
     return {
